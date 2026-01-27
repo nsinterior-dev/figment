@@ -41,6 +41,7 @@
 | `/frontend` | Feature implementation, bug fixes, refactoring |
 | `/code-reviewer` | Review code for architecture compliance |
 | `/ui-ux-designer` | Design decisions, styling, visual consistency |
+| `/mentor` | Learn patterns, architecture, get guidance on best practices |
 
 ---
 
@@ -116,6 +117,8 @@ See [Design System](.claude/docs/design-system.md) for full specs.
 
 | Doc | Purpose |
 |-----|---------|
+| [PRD](docs/PRD.md) | Product requirements, features, roadmap |
+| [Technical Learning Plan](docs/TECHNICAL-LEARNING-PLAN.md) | Step-by-step build & learn guide |
 | [Design System](.claude/docs/design-system.md) | Colors, typography, components, tokens |
 | [Architecture](.claude/docs/architecture.md) | Directory structure, layers, imports |
 | [Patterns](.claude/docs/patterns.md) | Component, hook, util patterns |
@@ -124,6 +127,15 @@ See [Design System](.claude/docs/design-system.md) for full specs.
 | [SOLID Principles](.claude/skills/frontend/references/solid-principles.md) | SOLID for React |
 | [React Patterns](.claude/skills/frontend/references/react-patterns.md) | Common React patterns |
 | [Testing](.claude/skills/frontend/references/testing.md) | Testing best practices |
+
+### Mentor Resources
+
+| Doc | Purpose |
+|-----|---------|
+| [Architecture Patterns](.claude/skills/mentor/references/architecture-patterns.md) | Design patterns, state management, data flow |
+| [Code Review Guide](.claude/skills/mentor/references/code-review-guide.md) | Giving and receiving feedback |
+| [Learning Roadmap](.claude/skills/mentor/references/learning-roadmap.md) | Skill progression path |
+| [Problem Solving](.claude/skills/mentor/references/problem-solving.md) | Systematic debugging approach |
 
 ---
 
