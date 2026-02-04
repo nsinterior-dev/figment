@@ -1,10 +1,11 @@
-import { UploadZone } from "@/features/upload/components/UploadZone"
+import { Workspace } from "@/features/workspace/components/Workspace"
+import { Heading } from "@/components/ui"
 
 export default function Home() {
   return (
     <div className="p-8">
-      <h1 className="text-2xl font-bold mb-4">Figment</h1>
-      <UploadZone />
+      <Heading level={2}>Figment</Heading>
+      <Workspace />
     </div>
   )
 }

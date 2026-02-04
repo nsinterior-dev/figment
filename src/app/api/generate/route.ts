@@ -13,9 +13,10 @@ export async function POST(request: Request) {
         const result = await generateCodeFromImage(body.image, body.prompt)
         return Response.json({ success: true, data: { generatedCode: result } })
     } catch (err){
-        console.error(err)
+        const errorMessage = err instanceof Error ? err.message : "Unknown error"
+        console.error("Generate API Error:", errorMessage, err)
         return Response.json(
-            { success: false, error: { code: 500, message: "Failed to generate code" } },
+            { success: false, error: { code: 500, message: errorMessage } },
             { status: 500 }
           )
     }

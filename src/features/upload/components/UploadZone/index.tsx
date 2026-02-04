@@ -4,7 +4,11 @@ import Image from "next/image";
 import useFileUpload from "../../hooks/useFileUpload";
 import { Button, DropZone, Panel, Text } from "@/components/ui";
 
-export const UploadZone = () => {
+interface UploadZoneProps {
+  onFileReady?: (file: File | null) => void;
+}
+
+export const UploadZone = ({ onFileReady }: UploadZoneProps) => {
   const { preview, error, handleFileSelect, clearFile } = useFileUpload();
   const [isDragging, setIsDragging] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -13,12 +17,23 @@ export const UploadZone = () => {
 
   const onSelectFile = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    if (file) handleFileSelect(file);
+    if (file) {
+      handleFileSelect(file);
+      onFileReady?.(file);
+    }
   };
 
   const onFileDrop = (files: FileList) => {
     setIsDragging(false);
-    if (files[0]) handleFileSelect(files[0]);
+    if (files[0]) {
+      handleFileSelect(files[0]);
+      onFileReady?.(files[0]);
+    }
+  };
+
+  const handleClear = () => {
+    clearFile();
+    onFileReady?.(null);
   };
 
   return (
@@ -35,7 +50,7 @@ export const UploadZone = () => {
         <Panel padding="lg" className="flex flex-col items-center gap-4">
           <Image src={preview} width={200} height={200} alt="Preview" className="rounded-lg" />
           <div className="flex gap-2">
-            <Button variant="ghost" onClick={clearFile}>Clear</Button>
+            <Button variant="ghost" onClick={handleClear}>Clear</Button>
             <Button variant="outline" onClick={openFilePicker}>Change File</Button>
           </div>
         </Panel>

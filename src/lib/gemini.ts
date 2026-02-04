@@ -1,4 +1,5 @@
 import { GoogleGenerativeAI } from "@google/generative-ai"
+import { buildPrompt } from "@/features/generation/utils/prompts"
 
 const apiKey = process.env.GOOGLE_AI_API_KEY
 if (!apiKey) {
@@ -7,8 +8,8 @@ if (!apiKey) {
 
 const genAI = new GoogleGenerativeAI(apiKey)
 
-// gemini-2.0-flash-exp: Free tier, fast, good for code generation
-export const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" })
+// gemini-2.0-flash: Free tier, fast, good for code generation
+export const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" })
 
 /**
  * Generate React code from a design screenshot
@@ -20,21 +21,9 @@ export async function generateCodeFromImage(
   image: string,
   prompt?: string
 ): Promise<string> {
-  const basePrompt = `You are an expert React developer. Analyze this design screenshot and generate a React component.
 
-Requirements:
-- Use React 19 with functional components
-- Use TypeScript with proper types
-- Use Tailwind CSS for styling
-- Make it responsive
-- Follow accessibility best practices
-- Use semantic HTML
 
-Output ONLY the code, no explanations or markdown code blocks.`
-
-  const fullPrompt = prompt
-    ? `${basePrompt}\n\nAdditional instructions: ${prompt}`
-    : basePrompt
+  const fullPrompt = buildPrompt(prompt);
 
   // Prepare image for Gemini API
   const imagePart = {
